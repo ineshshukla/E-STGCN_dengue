@@ -1,0 +1,559 @@
+location,population
+Porto Velho,426640.0
+Guajar<e1>-Mirim,61321.0
+Ariquemes,143809.0
+Ji-Paran<e1>,306896.0
+Alvorada D'Oeste,74460.0
+Cacoal,227135.0
+Vilhena,107857.0
+Colorado Oeste,59768.0
+Cruzeiro do Sul,103208.0
+Tarauac<e1>,58662.0
+Sena Madureira,39073.0
+Rio Branco,328893.0
+Brasil<e9>ia,44519.0
+Rio Negro AM,75584.0
+Japur<e1>,27909.0
+Alto Solim<f5>es,206778.0
+Juru<e1>,115109.0
+Tef<e9>,89176.0
+Coari,127317.0
+Manaus,1643417.0
+R.Preto da Eva,40307.0
+Itacoatiara,125492.0
+Parintins,211402.0
+Boca do Acre,44363.0
+Purus,60596.0
+Madeira,132790.0
+Boa Vista,239904.0
+Nordeste RR,30751.0
+Caracara<ed>,31208.0
+Sudeste RR,35374.0
+<d3>bidos,154251.0
+Santar<e9>m,435025.0
+Almeirim,57383.0
+Portel,98110.0
+Furos de Breves,169473.0
+Arari,119646.0
+Bel<e9>m,1908700.0
+Castanhal,232385.0
+Salgado,220543.0
+Bragantina,334713.0
+Camet<e1>,360154.0
+Tom<e9>-A<e7>u,218379.0
+Guam<e1>,370738.0
+Itaituba,204574.0
+Altamira,229706.0
+Tucuru<ed>,261385.0
+Paragominas,224216.0
+S.F<e9>lix Xingu,90906.0
+Parauapebas,160550.0
+Marab<e1>,222211.0
+Reden<e7><e3>o,166141.0
+Conc.Araguaia,102547.0
+Oiapoque,20467.0
+Amap<e1>,16966.0
+Macap<e1>,410258.0
+Mazag<e3>o,51044.0
+Bico Papagaio,178024.0
+Aragua<ed>na,234422.0
+Miracema TO,137622.0
+Rio Formoso,104041.0
+Gurupi TO,122789.0
+Porto Nacional,232417.0
+Jalap<e3>o,62759.0
+Dian<f3>polis,112821.0
+Litoral Ocid.MA,175196.0
+S<e3>o Lu<ed>s,1098926.0
+Ros<e1>rio,134356.0
+Len<e7><f3>is MA,132829.0
+Baixada MA,489270.0
+Itapecuru Mirim,153479.0
+Gurupi MA,185869.0
+Pindar<e9>,558471.0
+Imperatriz,516307.0
+M<e9>dio Mearim,396052.0
+A.Mearim/Graja<fa>,269347.0
+Pres. Dutra,178535.0
+B.Parna<ed>ba MA,122989.0
+Chapadinha,181117.0
+Cod<f3>,243953.0
+Coelho Neto,75470.0
+Caxias,368259.0
+Chap.Itapecuru,190210.0
+Porto Franco,90782.0
+Gerais Balsas,107571.0
+Chap.Mangab.,61479.0
+B.Parna<ed>ba PI,306030.0
+Litoral PI,276211.0
+Teresina,893917.0
+Campo Maior,211108.0
+M.Parna<ed>ba PI,125950.0
+Valen<e7>a PI,103869.0
+A.Parna<ed>ba PI,37005.0
+Bertol<ed>nia,38442.0
+Floriano,119667.0
+A.M.Gurgu<e9>ia,78125.0
+S.Raim.Nonato,122355.0
+Chap.Ext.Sul PI,77298.0
+Picos,187050.0
+Pio IX,52767.0
+A.M.Canind<e9>,243216.0
+Camocim/Acara<fa>,321656.0
+Ibiapaba,262973.0
+Corea<fa>,51074.0
+Meruoca,21114.0
+Sobral,332412.0
+Ipu,137061.0
+Santa Quit<e9>ria,69579.0
+Itapipoca,175206.0
+Baixo Curu,90619.0
+Uruburetama,88013.0
+M<e9>dio Curu,75543.0
+Canind<e9>,113282.0
+Baturit<e9>,173783.0
+Chorozinho,58065.0
+Cascavel CE,116676.0
+Fortaleza,2909748.0
+Pacajus,81000.0
+Sert<e3>o Crat<e9>us,234374.0
+Quixeramobim,236443.0
+Sert<e3>o Inhamuns,138970.0
+Senador Pompeu,208016.0
+Litoral Aracati,97795.0
+Baixo Jaguaribe,291040.0
+M<e9>dio Jaguaribe,62335.0
+Serra Pereiro,40267.0
+Iguatu,211442.0
+V<e1>rzea Alegre,92399.0
+Lavr.Mangabeira,55847.0
+Chap.Araripe,90032.0
+Cariria<e7>u,58087.0
+Barro,88689.0
+Cariri,474939.0
+Brejo Santo,89141.0
+Mossor<f3>,277382.0
+Chap.Apodi,70490.0
+M<e9>dio Oeste,37369.0
+Vale do A<e7>u,126202.0
+Serra S.Miguel,59028.0
+Pau dos Ferros,112813.0
+Umarizal,63691.0
+Macau,45144.0
+Angicos,50644.0
+Serra Santana,61240.0
+Serid<f3> Ocid.,90480.0
+Serid<f3> Oriental,115072.0
+Baixa Verde,57457.0
+Borborema RN,126275.0
+Agreste RN,208486.0
+Litoral NE,76690.0
+Maca<ed>ba,247304.0
+Natal,874487.0
+Litoral Sul RN,114990.0
+Catol<e9> do Rocha,107311.0
+Cajazeiras,157828.0
+Sousa,173879.0
+Patos,118552.0
+Pianc<f3>,71505.0
+Itaporanga,83047.0
+Serra Teixeira,108396.0
+Serid<f3> Ocid.PB,36861.0
+Serid<f3> Or.PB,67596.0
+Cariri Ocid.,113367.0
+Cariri Oriental,60172.0
+Curimata<fa> Ocid.,107846.0
+Curimata<fa> Or.,93594.0
+Esperan<e7>a,48398.0
+Brejo PB,118086.0
+Guarabira,159345.0
+Campina Grande,467237.0
+Itabaiana,106487.0
+Umbuzeiro,54233.0
+Litoral Norte,130118.0
+Sap<e9>,123889.0
+Jo<e3>o Pessoa,885384.0
+Litoral Sul PB,75463.0
+Araripina,280201.0
+Salgueiro,152558.0
+Paje<fa>,297330.0
+Sert<e3>o Moxot<f3>,185784.0
+Petrolina,358104.0
+Itaparica,117480.0
+Vale do Ipanema,162648.0
+Vale do Ipojuca,752329.0
+Alto Capibaribe,216626.0
+M.Capibaribe,252975.0
+Garanhuns,416234.0
+Brejo PE,211712.0
+Mata Set.PE,506492.0
+Vit<f3>ria S.Ant<e3>o,200017.0
+Mata Merid.PE,508874.0
+Itamarac<e1>,135954.0
+Recife,3033864.0
+Suape,216929.0
+Fern.Noronha,2096.0
+Serr.Sert<e3>o AL,87869.0
+Sert.S.Franc.AL,71060.0
+Santana Ipanema,166636.0
+Batalha,88932.0
+Palmeira <cd>ndios,175830.0
+Arapiraca,374824.0
+Traipu,35010.0
+Serr.Quilombos,143357.0
+Mata AL,282234.0
+Litoral N AL,59287.0
+Macei<f3>,1000524.0
+S.Miguel Campos,252820.0
+Penedo,118246.0
+Sert.S.Franc.SE,137687.0
+Carira,62108.0
+NS das Dores,58658.0
+Agr.Itabaiana,146848.0
+Tobias Barreto,101416.0
+Agr.Lagarto,104028.0
+Propri<e1>,88837.0
+Cotinguiba,40537.0
+Japaratuba,49729.0
+B.Cotinguiba,78078.0
+Aracaju,692048.0
+Boquim,144457.0
+Est<e2>ncia,112870.0
+Barreiras,210919.0
+Cotegipe,110650.0
+S Maria Vit<f3>ria,178948.0
+Juazeiro,415162.0
+Paulo Afonso,151810.0
+Barra,160628.0
+B Jesus da Lapa,161358.0
+Senhor Bonfim,266920.0
+Irec<ea>,350636.0
+Jacobina,315375.0
+Itaberaba,247236.0
+F Santana,906417.0
+Jeremoabo,106964.0
+Euclides Cunha,295783.0
+Ribeira Pombal,294178.0
+Serrinha,384537.0
+Alagoinhas,283973.0
+Entre Rios,105852.0
+Catu,190548.0
+S Ant<f4>nio Jesus,510434.0
+Salvador,3082339.0
+Boquira,180205.0
+Seabra,253852.0
+Jequi<e9>,517694.0
+Livr.Brumado,92180.0
+Guanambi,355645.0
+Brumado,264556.0
+Vit.Conquista,628202.0
+Itapetinga,211576.0
+Valen<e7>a,238648.0
+Ilh<e9>us-Itabuna,1091461.0
+Porto Seguro,649428.0
+Una<ed>,139528.0
+Paracatu,199217.0
+Janu<e1>ria,259009.0
+Jana<fa>ba,240080.0
+Salinas,201399.0
+Pirapora,155685.0
+Montes Claros,545838.0
+Gr<e3>o Mogol,40815.0
+Bocai<fa>va,63638.0
+Diamantina,81808.0
+Capelinha,187758.0
+Ara<e7>ua<ed>,151726.0
+Pedra Azul,83707.0
+Almenara,172680.0
+Te<f3>filo Otoni,258160.0
+Nanuque,118602.0
+Ituiutaba,133005.0
+Uberl<e2>ndia,717876.0
+Patroc<ed>nio,187086.0
+Patos de Minas,236231.0
+Frutal,155171.0
+Uberaba,295303.0
+Arax<e1>,175336.0
+Tr<ea>s Marias,89669.0
+Curvelo,144074.0
+Bom Despacho,150417.0
+Sete Lagoas,354160.0
+Conc. M. Dentro,88334.0
+Par<e1> de Minas,108809.0
+B Horizonte,4352377.0
+Itabira,354924.0
+Itaguara,58274.0
+Ouro Preto,157046.0
+Cons. Lafaiete,223587.0
+Guanh<e3>es,128187.0
+Pe<e7>anha,83915.0
+Gov. Valadares,398324.0
+Mantena,61342.0
+Ipatinga,481554.0
+Caratinga,241444.0
+Aimor<e9>s,147421.0
+Piu<ed>,77692.0
+Divin<f3>polis,401149.0
+Formiga,146172.0
+Campo Belo,106660.0
+Oliveira,120467.0
+Passos,212920.0
+S. Seb. Para<ed>so,256985.0
+Alfenas,212176.0
+Varginha,413175.0
+P. Caldas,314362.0
+P. Alegre,287740.0
+S Rita Sapuca<ed>,129797.0
+S. Louren<e7>o,198611.0
+Andrel<e2>ndia,73906.0
+Itajub<e1>,183503.0
+Lavras,136312.0
+S J del Rei,172469.0
+Barbacena,207972.0
+Ponte Nova,189573.0
+Manhua<e7>u,253576.0
+Vi<e7>osa,217284.0
+Muria<e9>,263145.0
+Ub<e1>,245256.0
+Juiz de Fora,673745.0
+Cataguases,208933.0
+Barra S.Franc.,86197.0
+Nova Ven<e9>cia,115960.0
+Colatina,186911.0
+Montanha,50766.0
+S<e3>o Mateus,160770.0
+Linhares,254413.0
+Afonso Cl<e1>udio,126463.0
+Santa Teresa,99446.0
+Vit<f3>ria,1371048.0
+Guarapari,163563.0
+Alegre,154319.0
+Cach.Itapemirim,315537.0
+Itapemirim,69623.0
+Itaperuna,181619.0
+S.Ant<f4>nio P<e1>dua,118895.0
+Campos Goytac.,529467.0
+Maca<e9>,178008.0
+Tr<ea>s Rios,145926.0
+Cantag/Cordeiro,58982.0
+Nova Friburgo,221644.0
+S.M.Madalena,28695.0
+Bacia de S.Jo<e3>o,83506.0
+Lagos,398142.0
+Vale Para<ed>ba RJ,631596.0
+Barra do Pira<ed>,164335.0
+Ba<ed>a I.Grande,153515.0
+Vassouras,152759.0
+Serrana,450044.0
+Macacu-Caceribu,99617.0
+Itagua<ed>,176842.0
+Rio de Janeiro,10784953.0
+Jales,147282.0
+Fernand<f3>polis,101011.0
+Votuporanga,127667.0
+S.Jos<e9> R.Preto,684117.0
+Catanduva,204778.0
+Auriflama,44197.0
+Nhandeara,58913.0
+Novo Horizonte,72624.0
+Barretos,127698.0
+S.Joaquim Barra,193357.0
+Ituverava,90779.0
+Franca,357501.0
+Jaboticabal,390699.0
+Ribeir<e3>o Preto,881285.0
+Batatais,99164.0
+Andradina,174896.0
+Ara<e7>atuba,235915.0
+Birigui,231717.0
+Lins,148583.0
+Bauru,522632.0
+Ja<fa>,315473.0
+Avar<e9>,161284.0
+Botucatu,183633.0
+Araraquara,454811.0
+S<e3>o Carlos,277636.0
+Rio Claro,221680.0
+Limeira,519378.0
+Piracicaba,501219.0
+Pirassununga,168968.0
+S.Jo<e3>o B.Vista,399885.0
+Mogi Mirim,347966.0
+Campinas,2257640.0
+Amparo,163928.0
+Dracena,108053.0
+Adamantina,151211.0
+Pres.Prudente,550832.0
+Tup<e3>,109273.0
+Mar<ed>lia,314123.0
+Assis,249792.0
+Ourinhos,274456.0
+Itapeva,235566.0
+Itapetininga,167321.0
+Tatu<ed>,215580.0
+Cap<e3>o Bonito,142484.0
+Piedade,181912.0
+Sorocaba,1157340.0
+Jundia<ed>,540515.0
+Bragan<e7>a SP,428659.0
+Campos Jord<e3>o,65715.0
+S.Jos<e9> Campos,1257394.0
+Guaratinguet<e1>,378282.0
+Bananal,25670.0
+Par./Paraitinga,70874.0
+Caraguatatuba,233271.0
+Registro,246320.0
+Itanha<e9>m,189047.0
+Osasco,1638611.0
+Franco da Rocha,386951.0
+Guarulhos,1212081.0
+Itapec.Serra,836486.0
+S<e3>o Paulo,12886203.0
+Mogi das Cruzes,1167738.0
+Santos,1340030.0
+Paranava<ed>,258537.0
+Umuarama,254660.0
+Cianorte,125932.0
+Goioer<ea>,126333.0
+Campo Mour<e3>o,215084.0
+Astorga,173321.0
+Porecatu,83065.0
+Flora<ed>,33793.0
+Maring<e1>,461658.0
+Apucarana,255598.0
+Londrina,650635.0
+Faxinal,47100.0
+Ivaipor<e3>,145879.0
+Assa<ed>,72801.0
+Corn.Proc<f3>pio,182716.0
+Jacarezinho,119527.0
+Ibaiti,74740.0
+Wenceslau Braz,97384.0
+Tel<ea>maco Borba,146951.0
+Jaguaria<ed>va,95702.0
+Ponta Grossa,389567.0
+Toledo,343038.0
+Cascavel PR,400369.0
+Foz do Igua<e7>u,409389.0
+Capanema,93301.0
+Franc.Beltr<e3>o,227330.0
+Pato Branco,151156.0
+Pitanga,84360.0
+Guarapuava,366937.0
+Palmas,85477.0
+Prudent<f3>polis,118695.0
+Irati,92262.0
+Uni<e3>o Vit<f3>ria,112745.0
+S.Mateus do Sul,56753.0
+Cerro Azul,29264.0
+Lapa,46553.0
+Curitiba,2742403.0
+Paranagu<e1>,243016.0
+Rio Negro PR,80678.0
+S.Miguel Oeste,169166.0
+Chapec<f3>,363410.0
+Xanxer<ea>,143697.0
+Joa<e7>aba,308603.0
+Conc<f3>rdia,137625.0
+Canoinhas,233832.0
+S.Bento do Sul,117859.0
+Joinville,696902.0
+Curitibanos,117269.0
+Campos de Lages,285702.0
+Rio do Sul,183582.0
+Blumenau,559927.0
+Itaja<ed>,420037.0
+Ituporanga,51163.0
+Tijucas,70517.0
+Florian<f3>polis,730719.0
+Tabuleiro,23246.0
+Tubar<e3>o,342507.0
+Crici<fa>ma,330309.0
+Ararangu<e1>,162664.0
+Santa Rosa,161762.0
+Tr<ea>s Passos,148851.0
+Fred.Westphalen,182754.0
+Erechim,213941.0
+Sananduva,61887.0
+Cerro Largo,69338.0
+Santo <c2>ngelo,208471.0
+Iju<ed>,180391.0
+Carazinho,159550.0
+Passo Fundo,303649.0
+Cruz Alta,156504.0
+N<e3>o-Me-Toque,41478.0
+Soledade,72061.0
+Guapor<e9>,116877.0
+Vacaria,154726.0
+Caxias do Sul,667848.0
+Santiago,111859.0
+Santa Maria,353830.0
+Restinga Seca,66619.0
+S. Cruz do Sul,302141.0
+Lajeado-Estrela,280885.0
+Cachoeira Sul,157817.0
+Montenegro,180991.0
+Gramado-Canela,267374.0
+S. Jer<f4>nimo,133485.0
+Porto Alegre,3479683.0
+Os<f3>rio,293115.0
+Camaqu<e3>,124840.0
+Campanha Ocid.,383693.0
+Campanha Centr.,195749.0
+Campanha Merid.,173811.0
+Serras Sudeste,117323.0
+Pelotas,478702.0
+Jaguar<e3>o,56613.0
+Litoral Lagunar,251201.0
+Baixo Pantanal,125591.0
+Aquidauana,99375.0
+Alto Taquari,105817.0
+Campo Grande,740422.0
+Cassil<e2>ndia,48351.0
+Parana<ed>ba,71542.0
+Tr<ea>s Lagoas,127501.0
+Nova Andradina,75167.0
+Bodoquena,101756.0
+Dourados,413372.0
+Iguatemi,202142.0
+Aripuan<e3>,100213.0
+Alta Floresta,90007.0
+Col<ed>der,128571.0
+Parecis,65418.0
+Arinos,69745.0
+A.Teles Pires,107597.0
+Sinop,138713.0
+Paranatinga,28656.0
+Norte Araguaia,91213.0
+Canarana,80545.0
+M<e9>dio Araguaia,61738.0
+Alto Guapor<e9>,61201.0
+Tangar<e1> Serra,116688.0
+Jauru,105104.0
+Alto Paraguai,31730.0
+Ros<e1>rio Oeste,31437.0
+Cuiab<e1>,758596.0
+Alto Pantanal,125890.0
+Primavera Leste,61681.0
+Tesouro,53302.0
+Rondon<f3>polis,228173.0
+Alto Araguaia,24366.0
+S.Miguel Arag.,74377.0
+Rio Vermelho,91753.0
+Aragar<e7>as,53650.0
+Porangatu,224697.0
+Chap.Veadeiros,56915.0
+Ceres,212620.0
+An<e1>polis,472083.0
+Ipor<e1>,62310.0
+Anicuns,102235.0
+Goi<e2>nia,1742120.0
+V<e3>o do Paran<e3>,92682.0
+Ent.Bras<ed>lia,856301.0
+SO de Goi<e1>s,351130.0
+Vale Rio Bois,102543.0
+Meia Ponte,319846.0
+Pires do Rio,87411.0
+Catal<e3>o,119782.0
+Quirin<f3>polis,94007.0
+Bras<ed>lia,2097447.0
