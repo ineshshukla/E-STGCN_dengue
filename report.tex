@@ -1,0 +1,366 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Epidemic-Guided Deep Learning for Extreme Spatio-Temporal Graph Convolutional Network Forecasting of Dengue}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ============================================
+% 1. FRONT MATTER
+% ============================================
+\begin{abstract}
+This report presents the development of an Epidemic-Guided Deep Learning (EGDL) Extreme Spatio-Temporal Graph Convolutional Network (E-STGCN) for dengue epidemic forecasting. The work combines the spatial-temporal modeling capabilities of E-STGCN with epidemiological knowledge through ODE-based epidemic models. We first apply STGCN to real dengue data, identifying limitations due to insufficient temporal coverage. Subsequently, we develop an artificial data generation framework using a modulated SEIRS-SEI compartmental model with demographic stochasticity to address data limitations. The report documents the model architecture, experimental results, and outlines future directions for achieving true epidemic-guided forecasting.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================
+% 2. PROBLEM STATEMENT
+% ============================================
+\section{Problem Statement}
+
+This work aims to develop an \textbf{Epidemic-Guided Deep Learning (EGDL) Extreme Spatio-Temporal Graph Convolutional Network (E-STGCN)} for dengue epidemic forecasting. This approach combines two key innovations:
+
+\begin{enumerate}
+    \item \textbf{Extreme Spatio-Temporal Graph Convolutional Network (E-STGCN)}
+
+    \item \textbf{Epidemic-Guided Deep Learning (EGDL)}
+\end{enumerate}
+
+% ============================================
+% 3. PHASE 1: STGCN ON REAL DENGUE DATA
+% ============================================
+\section{Phase 1: STGCN Application on Real Dengue Data}
+
+\subsection{Data Characteristics}
+We begin by applying STGCN to real dengue case data obtained from surveillance systems. The dataset consists of:
+\begin{itemize}
+    \item \textbf{Dimensions}: 228 timesteps $\times$ 558 localities
+    \item \textbf{Data Split}: 
+    \begin{itemize}
+        \item Training/Validation: 200 timesteps (87.7\%)
+        \item Hold-out Test: 28 timesteps (12.3\%)
+    \end{itemize}
+    \item \textbf{Challenge}: Limited temporal coverage (228 timesteps) may be insufficient for robust model training
+\end{itemize}
+
+\subsection{Model Architecture}
+
+\subsubsection{Graph Construction}
+The spatial graph is constructed using a gravity model based on population and geographic proximity:
+
+\begin{equation}
+W_{ij} = \frac{P_i \times P_j}{d_{ij}^2}
+\end{equation}
+
+where $P_i$ and $P_j$ are the populations of nodes $i$ and $j$, and $d_{ij}$ is the Haversine distance between their geographic coordinates. The graph is sparsified by keeping only the top 3\% of edges (97th percentile cutoff) and row-normalized for weighted aggregation. This results in a graph with 558 nodes and 9,326 edges.
+
+\subsubsection{Graph Convolution Layer}
+The GraphConv layer performs weighted aggregation of neighbor features:
+
+\begin{equation}
+h_i^{(l+1)} = \sigma\left(\text{concat}\left[W^{(l)} h_i^{(l)}, \frac{\sum_{j \in \mathcal{N}(i)} W_{ij} W^{(l)} h_j^{(l)}}{\sum_{j \in \mathcal{N}(i)} W_{ij}}\right]\right)
+\end{equation}
+
+where $h_i^{(l)}$ is the feature vector of node $i$ at layer $l$, $\mathcal{N}(i)$ denotes the neighbors of node $i$, $W_{ij}$ are the edge weights, $W^{(l)}$ is the learnable weight matrix, and $\sigma$ is the ReLU activation function.
+
+\subsubsection{LSTM-Graph Convolution Layer}
+The LSTMGC layer combines graph convolution with LSTM for spatio-temporal learning:
+
+\begin{align}
+\text{GCN}_{\text{out}} &= \text{GraphConv}(X) \\
+H &= \text{LSTM}(\text{reshape}(\text{GCN}_{\text{out}})) \\
+\hat{Y} &= \text{Dense}(H)
+\end{align}
+
+where $X$ is the input sequence, GCN processes spatial dependencies, LSTM captures temporal patterns, and Dense produces the final forecast.
+
+\subsubsection{Model Hyperparameters}
+\begin{itemize}
+    \item Input sequence length: 12 timesteps
+    \item Forecast horizon: 1 timestep
+    \item LSTM units: 32
+    \item GraphConv: input features = 1, output features = 4
+    \item Batch size: 32
+    \item Optimizer: Adam (learning rate = 0.001)
+    \item Loss function: Mean Absolute Error (MAE)
+\end{itemize}
+
+\subsection{Baseline Models}
+For comparison, we implement two baseline models:
+
+\begin{enumerate}
+    \item \textbf{Multi-Variate LSTM}: A standard LSTM that processes all localities simultaneously without graph structure
+    \item \textbf{Ensemble LSTM}: Individual LSTM models trained separately for selected localities (4 and 70 localities tested)
+\end{enumerate}
+
+\subsection{Results and Performance}
+
+\subsubsection{Performance Metrics}
+We evaluate models using two metrics:
+\begin{itemize}
+    \item \textbf{MAE (Mean Absolute Error)}: $\text{MAE} = \frac{1}{n}\sum_{i=1}^{n}|y_i - \hat{y}_i|$
+    \item \textbf{sMAPE (Symmetric Mean Absolute Percentage Error)}: $\text{sMAPE} = \frac{100\%}{n}\sum_{i=1}^{n}\frac{2|y_i - \hat{y}_i|}{|y_i| + |\hat{y}_i|}$
+\end{itemize}
+
+\subsubsection{Performance Comparison}
+Table~\ref{tab:real_data_results} summarizes the performance of all models on the real dengue test set.
+
+\begin{table}[H]
+\centering
+\caption{Model Performance on Real Dengue Data}
+\label{tab:real_data_results}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Model} & \textbf{MAE} & \textbf{sMAPE (\%)} \\
+\hline
+STGCN & 141.75 & 106.74 \\
+Multi-Variate LSTM & 160.11 & 126.14 \\
+Ensemble LSTM (4 localities) & 161.85 & 121.85 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Visualization}
+Figure~\ref{fig:real_prediction} shows a representative prediction example for one locality, and Figure~\ref{fig:real_comparison} compares predictions across multiple models for selected localities.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/real_data_prediction.png}
+\caption{STGCN prediction vs. actual cases for a representative locality on the test set.}
+\label{fig:real_prediction}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/real_data_comparison.png}
+\caption{Comparative model performance across multiple localities (indices: 10, 150, 300, 500) showing actual cases vs. predictions from STGCN, Multi-Variate LSTM, and Ensemble LSTM.}
+\label{fig:real_comparison}
+\end{figure}
+
+\subsection{Analysis: Limited Data as Likely Cause of Poor Performance}
+The results indicate that all models perform poorly on the real dengue data, with sMAPE values exceeding 100\%. \textbf{While STGCN performs relatively better than the baseline models, the overall results are not satisfactory.} The likely reason for the poor performance is the limited amount of data available (only 228 timesteps), which is insufficient for deep learning models, particularly those with graph structures, to learn complex spatio-temporal patterns effectively. These limitations motivate the development of an artificial data generation framework to provide sufficient data for model training and evaluation.
+
+% ============================================
+% 4. PHASE 2: ARTIFICIAL DATA GENERATION
+% ============================================
+\section{Phase 2: Artificial Data Generation with ODE-Based Epidemic Model}
+
+\subsection{Motivation}
+To address the data limitations identified in Phase 1, we develop an artificial data generation framework using ODE-based epidemic modeling. This approach allows us to:
+\begin{itemize}
+    \item Generate longer time series (4000 days simulation)
+    \item Study model behavior under controlled conditions
+    \item Test STGCN architecture with sufficient data
+    \item Incorporate realistic epidemic dynamics through compartmental models
+\end{itemize}
+
+\subsection{Epidemic Model: Modulated SEIRS-SEI with Cross-Immunity}
+
+\subsubsection{Model Structure}
+We implement an 8-compartment ODE system that models both human and vector populations:
+
+\textbf{Human (Host) Compartments}:
+\begin{itemize}
+    \item $S_h$: Susceptible humans
+    \item $E_h$: Exposed humans
+    \item $I_h$: Infected humans
+    \item $R_h$: Recovered humans
+    \item $C$: Cross-immunity factor (slow-moving)
+\end{itemize}
+
+\textbf{Vector (Mosquito) Compartments}:
+\begin{itemize}
+    \item $S_v$: Susceptible vectors
+    \item $E_v$: Exposed vectors
+    \item $I_v$: Infected vectors
+\end{itemize}
+
+\subsubsection{Model Equations}
+
+The system dynamics are governed by the following differential equations:
+
+\textbf{Vector Dynamics}:
+\begin{align}
+\frac{dS_v}{dt} &= \mu_v N_v - \beta_v(t) \frac{I_h}{N_h} S_v - \mu_v S_v \\
+\frac{dE_v}{dt} &= \beta_v(t) \frac{I_h}{N_h} S_v - \sigma_v E_v - \mu_v E_v \\
+\frac{dI_v}{dt} &= \sigma_v E_v - \mu_v I_v
+\end{align}
+
+\textbf{Human Dynamics}:
+\begin{align}
+\frac{dS_h}{dt} &= \mu_h N_h - \beta_h(t) \frac{I_v}{N_v} S_h - \mu_h S_h + \alpha R_h - \text{outflow} + \text{inflow} \\
+\frac{dE_h}{dt} &= \beta_h(t) \frac{I_v}{N_v} S_h - \sigma_h E_h - \mu_h E_h - \text{outflow} + \text{inflow} \\
+\frac{dI_h}{dt} &= \sigma_h E_h - \gamma_h I_h - \mu_h I_h - \text{outflow} + \text{inflow} \\
+\frac{dR_h}{dt} &= \gamma_h I_h - \mu_h R_h - \alpha R_h - \text{outflow} + \text{inflow}
+\end{align}
+
+\textbf{Cross-Immunity Dynamics}:
+\begin{equation}
+\frac{dC}{dt} = \lambda_{\text{prod}} I_h - \lambda_{\text{decay}} C
+\end{equation}
+
+where the transmission rates are modulated as:
+\begin{align}
+\beta_v(t) &= \beta_{v,\text{avg}} \left(1 + \beta_{v,\text{amp}} \cos\left(\frac{2\pi t}{365.25}\right)\right) \\
+\beta_h(t) &= \beta_h \left(1 - \text{clip}(C, 0, 1)\right)
+\end{align}
+
+The spatial flow terms (outflow/inflow) are computed using a gravity model-based flow matrix $F_{ij}$:
+\begin{equation}
+F_{ij} = G \cdot \frac{P_i P_j}{d_{ij}^2}
+\end{equation}
+
+where $G$ is a flow constant, $P_i$ and $P_j$ are populations, and $d_{ij}$ is the distance between nodes $i$ and $j$.
+
+\subsubsection{Model Parameters}
+\begin{itemize}
+    \item \textbf{Host Parameters}: $\sigma_h = 1/5.5$ (latency), $\gamma_h = 1/4.0$ (recovery), $\mu_h = 1/(70 \times 365)$ (mortality), $\alpha = 1/(365 \times 2)$ (waning immunity)
+    \item \textbf{Vector Parameters}: $\sigma_v = 1/5.5$, $\mu_v = 1/10.5$, vector-to-human ratio = 3.0
+    \item \textbf{Transmission}: $\beta_h = 0.5$, $\beta_{v,\text{avg}} = 0.5$, $\beta_{v,\text{amp}} = 0.15$
+    \item \textbf{Cross-Immunity}: $\lambda_{\text{prod}} = 10^{-10}$, $\lambda_{\text{decay}} = 1/(365 \times 3)$
+\end{itemize}
+
+\subsection{Demographic Stochasticity via Stochastic Differential Equations}
+
+To introduce intrinsic irregularity in epidemic dynamics, we incorporate demographic stochasticity using Stochastic Differential Equations (SDEs). The SDE formulation is:
+
+\begin{equation}
+dX = f(X, t) dt + \sqrt{X} \cdot \sigma \cdot dW
+\end{equation}
+
+where $f(X, t)$ is the deterministic drift (from the ODE system), $\sqrt{X}$ is the diffusion coefficient that scales with population size, $\sigma$ is the noise intensity parameter, and $dW$ is a Wiener process increment. We solve this using the Euler-Maruyama method with time step $\Delta t = 0.1$ days and noise intensity $\sigma = 0.1$.
+
+\subsection{Simulation Details}
+\begin{itemize}
+    \item Total simulation: 4000 days (~11 years)
+    \item Spin-up period: 1500 days (discarded to reach endemic equilibrium)
+    \item Final data: 2500 timesteps
+    \item Seed: Initial infection in highest population node (20 infected humans, 60 infected vectors)
+    \item Output: Daily new exposed human cases per node
+    \item Data split: Training/Validation (2000 timesteps, 80\%), Test (500 timesteps, 20\%)
+\end{itemize}
+
+\subsection{Results on Artificial Data}
+
+Table~\ref{tab:artificial_data_results} shows the performance of STGCN on the artificial data test set.
+
+\begin{table}[H]
+\centering
+\caption{STGCN Performance on Artificial Data}
+\label{tab:artificial_data_results}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Model} & \textbf{MAE} & \textbf{sMAPE (\%)} \\
+\hline
+STGCN & 14.31 & 11.12 \\
+\hline
+\end{tabular}
+\end{table}
+
+The results show significantly improved performance compared to real data, with STGCN achieving MAE of 14.31 cases and sMAPE of 11.12\% on the artificial data test set.
+
+\subsection{Visualizations}
+
+Figure~\ref{fig:artificial_seed} shows the simulation history for the seed node, Figure~\ref{fig:artificial_random} displays a representative random node, and Figure~\ref{fig:artificial_prediction} presents the prediction results with sMAPE scores.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/artificial_seed_node.png}
+\caption{Full simulation history for the seed node (highest population) showing the spin-up period and subsequent endemic dynamics with demographic stochasticity.}
+\label{fig:artificial_seed}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/artificial_random_node.png}
+\caption{Artificial dengue-like data for a representative random locality showing irregular amplitude variations due to demographic stochasticity.}
+\label{fig:artificial_random}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/artificial_prediction_comparison.png}
+\caption{STGCN prediction performance on artificial data test set. The model achieves sMAPE of 11.12\% with visible amplitude variation in predictions.}
+\label{fig:artificial_prediction}
+\end{figure}
+
+\subsection{Challenges and Limitations}
+
+While the artificial data generation framework addresses the data limitation issue, several challenges remain:
+
+\subsubsection{Network Structure Bias}
+A critical concern is that the same gravity model network structure is used for both:
+\begin{itemize}
+    \item \textbf{Data Generation}: Physical flow matrix $F_{ij}$ in the ODE system
+    \item \textbf{STGCN Graph}: Adjacency matrix for graph convolutions
+\end{itemize}
+
+This creates an "unfair advantage" where the model has perfect knowledge of the underlying network structure that generated the data. In real-world scenarios, the true transmission network is unknown and must be inferred or approximated. This may artificially inflate model performance and limit generalization to scenarios with network structure uncertainty.
+
+\subsubsection{Epidemic-Guided Architecture Challenge}
+The ultimate goal is to develop an \textbf{Epidemic-Guided E-STGCN} that incorporates ODE model information. However, a fundamental challenge exists:
+
+\begin{itemize}
+    \item \textbf{Standard EGDL Approach}: Fit an ODE model (e.g., SEIR, SEIRS) to \textbf{real epidemic data}, then use the fitted model's outputs as features for the neural network.
+    
+    \item \textbf{Current Limitation}: With artificial data, there is no "real data" to fit the ODE model to. The data itself is already generated from an ODE model, making the fitting process circular and not providing the intended epidemiological guidance.
+    
+    \item \textbf{Core Problem}: Epidemic-guided architecture requires fitting ODE models to real data to extract epidemiological insights. With artificial data, this fundamental component is missing, making it difficult to properly develop and test the epidemic-guided approach.
+\end{itemize}
+
+These challenges highlight the need for either: (1) working with real data to enable true epidemic-guided architecture, or (2) developing alternative approaches that can meaningfully incorporate epidemiological knowledge even with artificial data.
+
+% ============================================
+% 5. FUTURE DIRECTIONS
+% ============================================
+\section{Future Directions}
+
+Two potential paths forward have been identified:
+
+\subsection{Path 1: Continue with Artificial Dengue Data}
+Continue working with artificial data while addressing identified challenges:
+\begin{itemize}
+    \item \textbf{Network Structure Experiments}: Test robustness by generating data with one network structure and training STGCN with different networks to assess generalization.
+    \item \textbf{Enhanced Irregularity}: Further improve data realism through additional stochastic mechanisms and environmental variability.
+    \item \textbf{Limited Epidemic-Guidance}: Explore workarounds such as using known ODE parameters as features or generating ODE-derived features, though these don't fully address the epidemic-guided architecture challenge.
+\end{itemize}
+
+\subsection{Path 2: Switch to Alternative Periodic Disease}
+Transition to diseases with more readily available real-world data, such as influenza or measles:
+\begin{itemize}
+    \item \textbf{Advantages}: Extensive historical surveillance data (years/decades), better temporal coverage, standardized reporting systems (CDC, WHO).
+    \item \textbf{Enable True EGDL}: With real data, properly fit ODE models and develop true epidemic-guided architecture that combines real observations with ODE-derived epidemiological insights.
+    \item \textbf{Implementation}: Adapt ODE models to flu/measles dynamics (SIR/SEIR), utilize real surveillance data, and develop the full epidemic-guided E-STGCN framework.
+\end{itemize}
+
+The choice between paths depends on research goals, data availability, and whether the focus should remain disease-specific or generalize to periodic diseases broadly.
+
+% ============================================
+% REFERENCES
+% ============================================
+\begin{thebibliography}{99}
+\bibitem{estgcn_paper}
+Extreme Spatio-Temporal Graph Convolutional Network, \url{https://arxiv.org/abs/2411.12258}
+
+\bibitem{egdl_paper}
+Epidemic-Guided Deep Learning for Forecasting, \url{https://arxiv.org/abs/2502.10786}
+\end{thebibliography}
+
+\end{document}
+
