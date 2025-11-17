@@ -97,8 +97,10 @@ where $X$ is the input sequence, GCN processes spatial dependencies, LSTM captur
     \item LSTM units: 32
     \item GraphConv: input features = 1, output features = 4
     \item Batch size: 32
-    \item Optimizer: Adam (learning rate = 0.001)
+    \item Optimizer: Adam (learning rate = 0.0005)
     \item Loss function: Mean Absolute Error (MAE)
+    \item Regularization: Dropout (0.25) in LSTM, L2 regularization (0.001) on dense layer
+    \item Training: 30 epochs with early stopping (patience = 8, monitoring validation loss)
 \end{itemize}
 
 \subsection{Baseline Models}
@@ -314,17 +316,7 @@ A critical concern is that the same gravity model network structure is used for 
 This creates an "unfair advantage" where the model has perfect knowledge of the underlying network structure that generated the data. In real-world scenarios, the true transmission network is unknown and must be inferred or approximated. This may artificially inflate model performance and limit generalization to scenarios with network structure uncertainty.
 
 \subsubsection{Epidemic-Guided Architecture Challenge}
-The ultimate goal is to develop an \textbf{Epidemic-Guided E-STGCN} that incorporates ODE model information. However, a fundamental challenge exists:
-
-\begin{itemize}
-    \item \textbf{Standard EGDL Approach}: Fit an ODE model (e.g., SEIR, SEIRS) to \textbf{real epidemic data}, then use the fitted model's outputs as features for the neural network.
-    
-    \item \textbf{Current Limitation}: With artificial data, there is no "real data" to fit the ODE model to. The data itself is already generated from an ODE model, making the fitting process circular and not providing the intended epidemiological guidance.
-    
-    \item \textbf{Core Problem}: Epidemic-guided architecture requires fitting ODE models to real data to extract epidemiological insights. With artificial data, this fundamental component is missing, making it difficult to properly develop and test the epidemic-guided approach.
-\end{itemize}
-
-These challenges highlight the need for either: (1) working with real data to enable true epidemic-guided architecture, or (2) developing alternative approaches that can meaningfully incorporate epidemiological knowledge even with artificial data.
+The ultimate goal is to develop an \textbf{Epidemic-Guided E-STGCN} that incorporates ODE model information. However, a fundamental challenge exists: the standard EGDL approach requires fitting ODE models to \textbf{real epidemic data} and using the fitted model's outputs as features. With artificial data, there is no real data to fit the ODE model to, making the fitting process circular and not providing the intended epidemiological guidance. This highlights the need for working with real data to enable true epidemic-guided architecture.
 
 % ============================================
 % 5. FUTURE DIRECTIONS
@@ -333,23 +325,13 @@ These challenges highlight the need for either: (1) working with real data to en
 
 Two potential paths forward have been identified:
 
-\subsection{Path 1: Continue with Artificial Dengue Data}
-Continue working with artificial data while addressing identified challenges:
-\begin{itemize}
-    \item \textbf{Network Structure Experiments}: Test robustness by generating data with one network structure and training STGCN with different networks to assess generalization.
-    \item \textbf{Enhanced Irregularity}: Further improve data realism through additional stochastic mechanisms and environmental variability.
-    \item \textbf{Limited Epidemic-Guidance}: Explore workarounds such as using known ODE parameters as features or generating ODE-derived features, though these don't fully address the epidemic-guided architecture challenge.
-\end{itemize}
+\subsection{Path 1: Switch to Alternative Periodic Disease}
+Transition to diseases with more readily available real-world data, such as influenza or measles. This approach offers extensive historical surveillance data (years/decades), better temporal coverage, and standardized reporting systems (CDC, WHO). With real data, we can properly fit ODE models and develop true epidemic-guided architecture that combines real observations with ODE-derived epidemiological insights. Implementation would involve adapting ODE models to flu/measles dynamics (SIR/SEIR), utilizing real surveillance data, and developing the full epidemic-guided E-STGCN framework.
 
-\subsection{Path 2: Switch to Alternative Periodic Disease}
-Transition to diseases with more readily available real-world data, such as influenza or measles:
-\begin{itemize}
-    \item \textbf{Advantages}: Extensive historical surveillance data (years/decades), better temporal coverage, standardized reporting systems (CDC, WHO).
-    \item \textbf{Enable True EGDL}: With real data, properly fit ODE models and develop true epidemic-guided architecture that combines real observations with ODE-derived epidemiological insights.
-    \item \textbf{Implementation}: Adapt ODE models to flu/measles dynamics (SIR/SEIR), utilize real surveillance data, and develop the full epidemic-guided E-STGCN framework.
-\end{itemize}
+\subsection{Path 2: Continue with Artificial Dengue Data}
+Continue working with artificial data while addressing identified challenges through network structure experiments, enhanced irregularity mechanisms, and exploring limited epidemic-guidance workarounds.
 
-The choice between paths depends on research goals, data availability, and whether the focus should remain disease-specific or generalize to periodic diseases broadly.
+\textbf{Preference}: Path 1 is preferred since the STGCN code is already implemented and ready, making it straightforward to adapt to a different disease with more available data.
 
 % ============================================
 % REFERENCES
